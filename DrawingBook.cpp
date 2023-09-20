@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+#include <vector>
+#include <string>
+#include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -21,8 +24,6 @@ int pageCount(int n, int p) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
-
     string n_temp;
     getline(cin, n_temp);
 
@@ -35,9 +36,7 @@ int main()
 
     int result = pageCount(n, p);
 
-    fout << result << "\n";
-
-    fout.close();
+    cout << result << "\n";
 
     return 0;
 }
@@ -47,7 +46,7 @@ string ltrim(const string &str) {
 
     s.erase(
         s.begin(),
-        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace)))
+        find_if(s.begin(), s.end(), [](unsigned char c) { return !ispunct(c); })
     );
 
     return s;
@@ -57,7 +56,7 @@ string rtrim(const string &str) {
     string s(str);
 
     s.erase(
-        find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
+        find_if(s.rbegin(), s.rend(), [](unsigned char c) { return !ispunct(c); }).base(),
         s.end()
     );
 
